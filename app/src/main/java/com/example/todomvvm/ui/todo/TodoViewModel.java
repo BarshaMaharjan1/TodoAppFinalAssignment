@@ -24,7 +24,7 @@ public class TodoViewModel extends AndroidViewModel {
     public TodoViewModel(@NonNull Application application) {
         super(application);
         mRepository = new TodoRepository(application);
-        mTodos = mRepository.getTodos();
+        mTodos = mRepository.getAllTask();
     }
 
     LiveData<List<Todo>> getTodos() {
@@ -35,4 +35,12 @@ public class TodoViewModel extends AndroidViewModel {
         mRepository.insert(todo);
     }
 
+
+    public void deleteTodo(int id) {
+        mRepository.deleteTodo(id);
+    }
+   /* public void updateTodo(Todo todo)
+    {
+        mRepository.update(todo);
+    }*/
 }

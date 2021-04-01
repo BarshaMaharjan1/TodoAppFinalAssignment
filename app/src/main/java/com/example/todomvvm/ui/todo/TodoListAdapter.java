@@ -3,6 +3,8 @@ package com.example.todomvvm.ui.todo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,25 +12,55 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todomvvm.R;
 import com.example.todomvvm.database.Todo;
+import com.example.todomvvm.database.TodoRepository;
 
 import java.util.List;
 
 public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoViewHolder> {
 
+    private final TaskCallback callback;
+
     class TodoViewHolder extends RecyclerView.ViewHolder {
-        private final TextView todoItemView;
+        private TextView todoItemView, desc;
+        private ImageView delete, update;
+        private TodoRepository repository;
+        private EditText titleEditTExt;
+        private EditText descEditText;
+
 
         private TodoViewHolder(View itemView) {
             super(itemView);
-            todoItemView = itemView.findViewById(R.id.textView);
+            todoItemView = itemView.findViewById(R.id.title);
+            desc = itemView.findViewById(R.id.desc);
+            delete = itemView.findViewById(R.id.delete);
+            update = itemView.findViewById(R.id.update);
+
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    callback.onItemDeleted(mTodos.get(pos).getId());
+                }
+            });
+
+            update.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    callback.onUpdate(mTodos.get(pos));
+                }
+            });
+
         }
     }
 
     private final LayoutInflater mInflater;
     private List<Todo> mTodos; // Cached copy of todos
 
-    TodoListAdapter(TodoFragment context) {
+    TodoListAdapter(TodoFragment context, TaskCallback callback) {
         mInflater = LayoutInflater.from(context.getContext());
+        this.callback = callback;
     }
 
     @NonNull
@@ -43,13 +75,17 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
         if (mTodos != null) {
             Todo current = mTodos.get(position);
             holder.todoItemView.setText(current.getTitle());
+            holder.desc.setText(current.getDetail());
+
+
         } else {
             // Covers the case of data not being ready yet.
             holder.todoItemView.setText(R.string.no_todo);
         }
     }
 
-    void setTodos(List<Todo> todos){
+
+    void setTodos(List<Todo> todos) {
         mTodos = todos;
         notifyDataSetChanged();
     }
@@ -61,5 +97,16 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
         if (mTodos != null)
             return mTodos.size();
         else return 0;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    public interface TaskCallback {
+        void onItemDeleted(int id);
+
+        void onUpdate(Todo todo);
     }
 }

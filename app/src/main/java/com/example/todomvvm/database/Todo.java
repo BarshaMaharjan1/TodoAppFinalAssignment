@@ -3,7 +3,10 @@ package com.example.todomvvm.database;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
 
 /**
  * A basic class representing a one-column todo_database table.
@@ -17,26 +20,61 @@ import androidx.room.PrimaryKey;
  */
 
 @Entity(tableName = "todo_table")
-public class Todo {
+public class Todo implements Serializable {
 
-    @PrimaryKey
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     @NonNull
-    @ColumnInfo(name = "title")
-    private String mTitle;
-    private String mDetail;
-    
-    public Todo(@NonNull String title) {
-        this.mTitle = title;
-    }
-    public String getTitle() {
-        return this.mTitle;
+    private String title;
+    private String detail;
+    private int priority;
+
+    public Todo(@NonNull String title, String detail ,int priority) {
+        this.title = title;
+        this.detail=detail;
+        this.priority=priority;
     }
 
-    String getDetail() {
-        return this.mDetail;
+    @Ignore
+    public Todo(int id, String title,String detail, int priority)
+    {
+        this.id=id;
+        this.title=title;
+        this.priority=priority;
+
     }
-    void setDetail(String mDetail) {
-        this.mDetail = mDetail;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String description) {
+        this.detail = description;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
 }
+

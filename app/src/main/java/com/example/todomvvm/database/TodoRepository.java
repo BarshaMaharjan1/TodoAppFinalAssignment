@@ -16,51 +16,63 @@ import java.util.List;
  */
 
 public class TodoRepository {
+    static TodoRepository INSTANCE;
+    TodoRoomDatabase mdb;
+    TodoDao mdao;
 
-    private TodoDao mTodoDao;
-    private LiveData<List<Todo>> mTodos;
 
-    // Note that in order to unit test the TodoRepository, you have to remove the Application
-    // dependency. This adds complexity and much more code, and this sample is not about testing.
-    // See the BasicSample in the android-architecture-components repository at
-    // https://github.com/googlesamples
 
     public TodoRepository(Application application) {
-        TodoRoomDatabase db = TodoRoomDatabase.getDatabase(application);
-        mTodoDao = db.todoDao();
-        mTodos = mTodoDao.getTodos();
+        mdb=TodoRoomDatabase.getDatabase(application);
+        mdao=mdb.todoDao();
     }
 
-    // Room executes all queries on a separate thread.
-    // Observed LiveData will notify the observer when the data has changed.
 
-    public LiveData<List<Todo>> getTodos()  {
-        return mTodos;
-    }
-
-    // You must call this on a non-UI thread or your app will crash.
-    // Like this, Room ensures that you're not doing any long running operations on the main
-    // thread, blocking the UI.
-
-    public void insert (Todo todo) {
-        new insertAsyncTask(mTodoDao).execute(todo);
-    }
-
-    private static class insertAsyncTask extends AsyncTask<Todo, Void, Void> {
-
-        private TodoDao mAsyncTaskDao;
-
-        insertAsyncTask(TodoDao dao) {
-            mAsyncTaskDao = dao;
+    public static TodoRepository getTodoRepository(Application application)
+    {
+        if (INSTANCE == null){
+            INSTANCE = new TodoRepository(application);
         }
-
-        @Override
-        protected Void doInBackground( final Todo... params) {
-
-            mAsyncTaskDao.insert(params[0]);
-            return null;
-        }
-
+        return INSTANCE;
+    }
+    public LiveData<List<Todo>> getAllTask()
+    {
+        return mdao.getAllTasks();
     }
 
+    public void deleteAll(){
+        TodoRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mdao.deleteAll();
+            }
+        });
+    }
+
+    public void update(final Todo todo){
+        TodoRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mdao.update(todo);
+            }
+        });
+    }
+
+    public void insert(final Todo todo){
+        TodoRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mdao.insert(todo);
+            }
+        });
+    }
+
+    public void deleteTodo(final int id) {
+        TodoRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mdao.deleteTodo(id);
+            }
+        });
+    }
 }
