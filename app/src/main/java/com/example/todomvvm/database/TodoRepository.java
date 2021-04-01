@@ -1,7 +1,9 @@
 package com.example.todomvvm.database;
 
 import android.app.Application;
+
 import androidx.lifecycle.LiveData;
+
 import android.os.AsyncTask;
 
 import com.example.todomvvm.database.Todo;
@@ -21,26 +23,24 @@ public class TodoRepository {
     TodoDao mdao;
 
 
-
     public TodoRepository(Application application) {
-        mdb=TodoRoomDatabase.getDatabase(application);
-        mdao=mdb.todoDao();
+        mdb = TodoRoomDatabase.getDatabase(application);
+        mdao = mdb.todoDao();
     }
 
 
-    public static TodoRepository getTodoRepository(Application application)
-    {
-        if (INSTANCE == null){
+    public static TodoRepository getTodoRepository(Application application) {
+        if (INSTANCE == null) {
             INSTANCE = new TodoRepository(application);
         }
         return INSTANCE;
     }
-    public LiveData<List<Todo>> getAllTask()
-    {
+
+    public LiveData<List<Todo>> getAllTask() {
         return mdao.getAllTasks();
     }
 
-    public void deleteAll(){
+    public void deleteAll() {
         TodoRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -49,7 +49,7 @@ public class TodoRepository {
         });
     }
 
-    public void update(final Todo todo){
+    public void update(final Todo todo) {
         TodoRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -58,7 +58,7 @@ public class TodoRepository {
         });
     }
 
-    public void insert(final Todo todo){
+    public void insert(final Todo todo) {
         TodoRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {

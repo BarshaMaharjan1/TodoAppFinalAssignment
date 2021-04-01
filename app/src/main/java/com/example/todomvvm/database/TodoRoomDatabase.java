@@ -17,8 +17,9 @@ import java.util.concurrent.Executors;
 public abstract class TodoRoomDatabase extends RoomDatabase {
 
     public abstract TodoDao todoDao();
+
     private static TodoRoomDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS=4;
+    private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
@@ -39,9 +40,9 @@ public abstract class TodoRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private  static  RoomDatabase.Callback RoomDbCallBack = new RoomDatabase.Callback(){
+    private static RoomDatabase.Callback RoomDbCallBack = new RoomDatabase.Callback() {
         @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db){
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
 
             TodoDao dao = INSTANCE.todoDao();
@@ -58,8 +59,9 @@ public abstract class TodoRoomDatabase extends RoomDatabase {
             });*/
 
         }
+
         @Override
-        public void  onOpen(@NonNull SupportSQLiteDatabase db){
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
         }
     };

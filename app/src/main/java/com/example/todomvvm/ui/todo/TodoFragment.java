@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -62,16 +63,20 @@ public class TodoFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.mdelete: {
+            case R.id.mdelete :{
                 repository.deleteAll();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, TodoFragment.newInstance())
                         .commitNow();
+
                 return true;
             }
 
+            case R.id.item_share: {
 
+                return true;
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }
