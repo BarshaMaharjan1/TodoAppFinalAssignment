@@ -1,9 +1,14 @@
 package com.example.todomvvm;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.example.todomvvm.database.Todo;
 import com.example.todomvvm.ui.todo.TodoFragment;
@@ -28,4 +33,6 @@ public class TodoActivity extends AppCompatActivity {
         fragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
     }
+
+
 }

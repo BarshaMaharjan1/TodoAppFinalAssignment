@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Room uses this DAO where you map a Java method call to an SQL query.
- *
+ * <p>
  * When you are using complex data types, such as Date, you have to also supply type converters.
  * To keep this example basic, no types that require type converters are used.
  * See the documentation at
@@ -33,8 +33,6 @@ public interface TodoDao {
 
     @Query("delete from todo_table")
     void deleteAll();
-    @Delete
-    void  delete(Todo todo);
 
     @Query("delete from todo_table where id = :id")
     void deleteTodo(int id);

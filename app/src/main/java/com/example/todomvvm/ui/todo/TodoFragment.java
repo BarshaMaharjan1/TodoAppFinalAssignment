@@ -2,6 +2,9 @@ package com.example.todomvvm.ui.todo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -50,19 +53,44 @@ public class TodoFragment extends Fragment {
     private Button submitButton;
     private TodoRepository repository;
 
+//Adding menu and inflater
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.task_menu, menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mdelete: {
+                repository.deleteAll();
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, TodoFragment.newInstance())
+                        .commitNow();
+                return true;
+            }
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
 //      return inflater.inflate(R.layout.main_fragment, container, false);
 
         View view;
         view = inflater.inflate(R.layout.main_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
-        titleEditTExt=view.findViewById(R.id.title_entry);
-        descEditText=view.findViewById(R.id.desc_label);
+        titleEditTExt = view.findViewById(R.id.title_entry);
+        descEditText = view.findViewById(R.id.desc_label);
 
         this.adapter = new TodoListAdapter(this, new TodoListAdapter.TaskCallback() {
 
@@ -72,12 +100,16 @@ public class TodoFragment extends Fragment {
                 mTodoViewModel.deleteTodo(id);
             }
 
+
             @Override
             public void onUpdate(Todo todo) {
                 // TODO , move to update activity / fragment from here with the current todo
-                ((TodoActivity)getActivity()).moveToUpdate(todo);
+                ((TodoActivity) getActivity()).moveToUpdate(todo);
             }
         });
+
+        setHasOptionsMenu(true);
+
         recyclerView.setAdapter(adapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -91,6 +123,7 @@ public class TodoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         // deprecated, mTodoViewModel = of(this).get(TodoViewModel.class);
+        repository = new TodoRepository(getActivity().getApplication());
         mTodoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
 
         // TODO: Use the ViewModel
@@ -119,7 +152,7 @@ public class TodoFragment extends Fragment {
         });
 
 
-
     }
+
 
 }

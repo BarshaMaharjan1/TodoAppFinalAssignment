@@ -28,7 +28,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_addtask"
+        android:src="@drawable/ic_add_task"
         android:backgroundTint="@color/cardview_light_background"
         />
 
