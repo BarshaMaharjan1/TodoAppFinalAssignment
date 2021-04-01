@@ -26,6 +26,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
         private TodoRepository repository;
         private EditText titleEditTExt;
         private EditText descEditText;
+        private EditText datelist;
 
 
         private TodoViewHolder(View itemView) {
@@ -34,6 +35,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
             desc = itemView.findViewById(R.id.desc);
             delete = itemView.findViewById(R.id.delete);
             update = itemView.findViewById(R.id.update);
+
 
 
             delete.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +53,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
                     callback.onUpdate(mTodos.get(pos));
                 }
             });
+
 
         }
     }
@@ -76,6 +79,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
             Todo current = mTodos.get(position);
             holder.todoItemView.setText(current.getTitle());
             holder.desc.setText(current.getDetail());
+//            holder.datelist.setText(current.getDate());
 
 
         } else {

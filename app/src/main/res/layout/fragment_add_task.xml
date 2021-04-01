@@ -155,6 +155,7 @@
         app:layout_constraintTop_toBottomOf="@+id/date_label"
         tools:ignore="TextFields" />
 
+
     <ImageView
         android:id="@+id/imgDate"
         android:layout_width="36dp"
@@ -163,8 +164,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/date_edit"
         app:layout_constraintTop_toBottomOf="@+id/date_label"
-        app:tint="@color/teal_700" />
-
+        app:tint="@color/teal_700"
+        android:onClick="calendar"
+        tools:ignore="OnClick" />
     <Button
         android:id="@+id/submit_btn"
         android:layout_width="match_parent"
