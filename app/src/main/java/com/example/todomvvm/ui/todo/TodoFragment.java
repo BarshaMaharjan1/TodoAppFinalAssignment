@@ -182,7 +182,7 @@ public class TodoFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, AddTaskFragment.newInstance())
                         .commitNow();
-                Toast.makeText(requireContext(),"add",Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(requireContext(),"add",Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -12,7 +12,7 @@
     <string name="submit">Submit</string>
     <string name="priority_label">Priority</string>
     <string name="tasks_header">Tasks</string>
-    <string name="due_date">Due Date</string>
+    <string name="date_mark">Mark Date</string>
     <string name="date">mark your date</string>
     <string name="priority_prompt">Priority</string>
     <string-array name="priority_option">
