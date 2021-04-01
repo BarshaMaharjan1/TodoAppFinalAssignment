@@ -1,6 +1,7 @@
 package com.example.todomvvm.ui.todo;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -82,14 +84,16 @@ public class TodoFragment extends Fragment {
 
             case R.id.item_share: {
 
-                String txt = "Todo share";
-                String mimeType = "Share tasks";
-                ShareCompat.IntentBuilder
-                        .from(getActivity())
-                        .setType(mimeType)
-                        .setChooserTitle("Share you todo: ")
-                        .setText(txt)
-                        .startChooser();
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"barshamhrzan@gmail.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "Todo Test");
+                i.putExtra(Intent.EXTRA_TEXT   , "Welcome to todo app.");
+                try {
+                    startActivity(Intent.createChooser(i, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    //Toast.makeText(requireContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
             }
             default:
                 return super.onOptionsItemSelected(item);
@@ -178,6 +182,7 @@ public class TodoFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, AddTaskFragment.newInstance())
                         .commitNow();
+                Toast.makeText(requireContext(),"add",Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AddTaskFragment"
-
-    >
+    tools:context=".AddTaskFragment">
 
 
     <EditText
@@ -19,11 +17,14 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="@string/enter_title"
+        android:hint="@string/your_title"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_label" />
+        app:layout_constraintTop_toBottomOf="@+id/title_label"
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+        android:inputType="textCapWords"/>
 
     <TextView
         android:id="@+id/title_label"
@@ -35,7 +36,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/desc_label"
@@ -47,7 +49,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_entry" />
+        app:layout_constraintTop_toBottomOf="@+id/title_entry"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/desc_entry"
@@ -59,12 +62,14 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="@string/enter_description"
+        android:hint="@string/Your_description"
         android:inputType="textMultiLine"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desc_label" />
+        app:layout_constraintTop_toBottomOf="@+id/desc_label"
+        android:singleLine="true"
+        />
 
 
     <TextView
@@ -99,7 +104,8 @@
             android:background="@color/materialRed"
             android:checked="true"
             android:text="@string/high_priority"
-            android:theme="@style/WhiteRadioButton" />
+            android:theme="@style/WhiteRadioButton"
+            />
 
         <RadioButton
             android:id="@+id/radButton2"
@@ -132,7 +138,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/date_edit"
@@ -147,13 +154,15 @@
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:hint="@string/set_date"
+        android:hint="@string/date"
         android:inputType="text"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_label"
-        tools:ignore="TextFields" />
+        tools:ignore="TextFields"
+        android:imeOptions="actionDone"
+        android:singleLine="true"/>
 
 
     <ImageView
@@ -169,7 +178,7 @@
         tools:ignore="OnClick" />
     <Button
         android:id="@+id/submit_btn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"

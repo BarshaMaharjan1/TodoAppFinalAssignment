@@ -6,11 +6,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todomvvm.R;
+import com.example.todomvvm.TodoActivity;
 import com.example.todomvvm.database.Todo;
 import com.example.todomvvm.database.TodoRepository;
 
@@ -21,12 +23,9 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
     private final TaskCallback callback;
 
     class TodoViewHolder extends RecyclerView.ViewHolder {
-        private TextView todoItemView, desc;
+        private TextView todoItemView, desc, datelist;
         private ImageView delete, update;
         private TodoRepository repository;
-        private EditText titleEditTExt;
-        private EditText descEditText;
-        private EditText datelist;
 
 
         private TodoViewHolder(View itemView) {
@@ -35,6 +34,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
             desc = itemView.findViewById(R.id.desc);
             delete = itemView.findViewById(R.id.delete);
             update = itemView.findViewById(R.id.update);
+            datelist=itemView.findViewById(R.id.datelist);
 
 
 
@@ -43,6 +43,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
                     callback.onItemDeleted(mTodos.get(pos).getId());
+//                    Toast toast=Toast.makeText("deleted",Toast.LENGTH_SHORT):
+//                            toast.show();
                 }
             });
 
@@ -79,7 +81,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
             Todo current = mTodos.get(position);
             holder.todoItemView.setText(current.getTitle());
             holder.desc.setText(current.getDetail());
-//            holder.datelist.setText(current.getDate());
+            holder.datelist.setText(current.getDate());
 
 
         } else {

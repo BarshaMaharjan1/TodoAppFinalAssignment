@@ -29,13 +29,13 @@ public class Todo implements Serializable {
     private String title;
     private String detail;
     private int priority;
-    //private String date;
+    private String date;
 
-    public Todo(@NonNull String title, String detail, int priority ) {
+    public Todo(@NonNull String title, String detail, int priority, String date ) {
         this.title = title;
         this.detail = detail;
         this.priority = priority;
-
+        this.date = date;
     }
 
     @Ignore
@@ -78,14 +78,13 @@ public class Todo implements Serializable {
         this.priority = priority;
     }
 
+    public String getDate() {
+        return date;
+    }
 
-//    public String getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(String date) {
-//        this.date = date;
-//    }
+    public void setDate(String date) {
+        this.date = date;
+    }
 
 }
 

@@ -99,13 +99,14 @@ public class AddTaskFragment extends Fragment {
                 String title = titleEditTExt.getText().toString();
                 String desc = descEditText.getText().toString();
                 int priority = getPriorityFromViews();
+                String date = date_edit.getText().toString();
 
-                Todo todo = new Todo(title.trim(), desc, priority);
+                Todo todo = new Todo(title.trim(), desc, priority,date);
                 repository.insert(todo);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, TodoFragment.newInstance())
                         .commitNow();
-//                Toast.makeText(getActivity(),"Successfully insert data",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(requireContext(),"Successfully insert data",Toast.LENGTH_SHORT).show();
 
             }
             

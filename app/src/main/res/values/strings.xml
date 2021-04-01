@@ -5,15 +5,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_desc">No Desc</string>
 
-    <string name="enter_title">Enter title</string>
+    <string name="your_title">Your title</string>
     <string name="title_label">Title</string>
     <string name="desc_label">Description</string>
-    <string name="enter_description">Enter description</string>
+    <string name="Your_description">Your description</string>
     <string name="submit">Submit</string>
     <string name="priority_label">Priority</string>
     <string name="tasks_header">Tasks</string>
     <string name="due_date">Due Date</string>
-    <string name="set_date">set date</string>
+    <string name="date">mark your date</string>
     <string name="priority_prompt">Priority</string>
     <string-array name="priority_option">
         <item>High</item>

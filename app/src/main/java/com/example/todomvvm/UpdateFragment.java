@@ -1,5 +1,6 @@
 package com.example.todomvvm;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,12 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.example.todomvvm.database.Todo;
 import com.example.todomvvm.database.TodoRepository;
 import com.example.todomvvm.ui.todo.TodoFragment;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,10 +45,14 @@ public class UpdateFragment extends Fragment {
     private Button update_btn;
     private TodoRepository repository;
 
+
     public static final int PRIORITY_HIGH = 1;
     public static final int PRIORITY_MEDIUM = 2;
     public static final int PRIORITY_LOW = 3;
     private Todo data;
+    DatePickerDialog picker;
+    private ImageView calendar_date;
+
 
 
     public UpdateFragment() {
@@ -76,21 +85,25 @@ public class UpdateFragment extends Fragment {
         descEditText = view.findViewById(R.id.desc_entry);
         mRadioGroup = view.findViewById(R.id.radioGroup);
         update_btn = view.findViewById(R.id.update_btn);
+        setDate = view.findViewById(R.id.date_edit);
+        calendar_date= view.findViewById(R.id.calendar_date);
 
         repository = new TodoRepository(getActivity().getApplication());
 
         titleEditTExt.setText(Editable.Factory.getInstance().newEditable(data.getTitle()));
         descEditText.setText(Editable.Factory.getInstance().newEditable(data.getDetail()));
-
+        setDate.setText(Editable.Factory.getInstance().newEditable(data.getDate()));
         update_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = titleEditTExt.getText().toString();
                 String desc = descEditText.getText().toString();
+                String date = setDate.getText().toString();
                 int priority = getPriorityFromViews();
                 data.setTitle(title.trim());
                 data.setDetail(desc);
                 data.setPriority(priority);
+                data.setDate(date);
                 repository.update(data);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, TodoFragment.newInstance())
@@ -132,6 +145,23 @@ public class UpdateFragment extends Fragment {
             }
         });
 
+        calendar_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH) + 1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                picker=new DatePickerDialog(requireContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        setDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                    }
+                },year,month,day);
+                picker.show();
+            }
+        });
 
         return view;
     }
