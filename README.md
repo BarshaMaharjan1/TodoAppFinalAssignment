@@ -26,5 +26,5 @@ Reference : https://github.com/ebbi/TodoMVVM
  <img src="TodoFinalGif.gif" width="150">
  
            Landscape
-  <img src="Landscape.gif" width="150">
+  <img src="rotated.gif" width="150">
 
