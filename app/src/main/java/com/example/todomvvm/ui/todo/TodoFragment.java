@@ -79,7 +79,7 @@ public class TodoFragment extends Fragment {
                 try {
                     startActivity(Intent.createChooser(i, "Send mail..."));
                 } catch (android.content.ActivityNotFoundException ex) {
-                    //Toast.makeText(requireContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+
                 }
             }
             default:
