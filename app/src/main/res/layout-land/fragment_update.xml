@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AddTaskFragment">
+    tools:context=".UpdateFragment">
 
 
     <EditText
         android:id="@+id/title_entry"
-        android:layout_width="720dp"
-        android:layout_height="36dp"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
         android:drawableLeft="@drawable/ic_title"
         android:ems="10"
         android:hint="@string/your_title"
-        android:imeOptions="actionNext"
-        android:inputType="textCapWords"
-        android:singleLine="true"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_label" />
 
     <TextView
         android:id="@+id/title_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="51dp"
+        android:layout_height="27dp"
         android:text="@string/title_label"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -34,7 +31,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/desc_label"
@@ -50,23 +46,22 @@
 
     <EditText
         android:id="@+id/desc_entry"
-        android:layout_width="723dp"
-        android:layout_height="34dp"
+        android:layout_width="0dp"
+        android:layout_height="33dp"
         android:drawableLeft="@drawable/ic_detail"
         android:ems="10"
         android:hint="@string/Your_description"
         android:inputType="textMultiLine"
-        android:singleLine="true"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc_label" />
 
+
     <TextView
         android:id="@+id/priority_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="78dp"
+        android:layout_height="27dp"
         android:text="@string/priority_label"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -88,6 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/priority_label">
 
         <RadioButton
+
             android:id="@+id/radButton1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -95,8 +91,7 @@
             android:background="@color/colorPrimary"
             android:checked="true"
             android:text="@string/high_priority"
-            android:theme="@style/WhiteRadioButton"
-            />
+            android:theme="@style/WhiteRadioButton" />
 
         <RadioButton
             android:id="@+id/radButton2"
@@ -121,8 +116,9 @@
 
     <TextView
         android:id="@+id/date_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="131dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="12dp"
         android:text="@string/date_mark"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -131,11 +127,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-
     <EditText
         android:id="@+id/date_edit"
-        android:layout_width="670dp"
-        android:layout_height="34dp"
+        android:layout_width="654dp"
+        android:layout_height="33dp"
         android:layout_marginEnd="72dp"
         android:cursorVisible="false"
         android:drawableLeft="@drawable/ic_date"
@@ -143,9 +138,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:hint="@string/date"
-        android:imeOptions="actionDone"
         android:inputType="text"
-        android:singleLine="true"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -154,30 +147,26 @@
         tools:ignore="TextFields" />
 
     <ImageView
-        android:id="@+id/imgDate"
+        android:id="@+id/calendar_date"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/ic_baseline_calendar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/date_edit"
         app:layout_constraintTop_toBottomOf="@+id/date_label"
-        app:tint="@color/blue"
-        />
+        app:tint="@color/blue" />
 
     <Button
-        android:id="@+id/submit_btn"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:id="@+id/update_btn"
+        android:layout_width="77dp"
+        android:layout_height="wrap_content"
         android:backgroundTint="@color/light_blue"
-        android:text="@string/submit"
+        android:text="update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgDate"
+        app:layout_constraintTop_toBottomOf="@+id/calendar_date"
         app:layout_constraintVertical_bias="0.0" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
