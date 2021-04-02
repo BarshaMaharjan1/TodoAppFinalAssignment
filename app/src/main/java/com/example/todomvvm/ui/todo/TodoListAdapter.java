@@ -25,7 +25,6 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
     class TodoViewHolder extends RecyclerView.ViewHolder {
         private TextView todoItemView, desc, datelist;
         private ImageView delete, update;
-        private TodoRepository repository;
 
 
         private TodoViewHolder(View itemView) {
@@ -34,10 +33,9 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
             desc = itemView.findViewById(R.id.desc);
             delete = itemView.findViewById(R.id.delete);
             update = itemView.findViewById(R.id.update);
-            datelist=itemView.findViewById(R.id.datelist);
+            datelist = itemView.findViewById(R.id.datelist);
 
-
-
+            //For deleting one by one items from list using callback
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -48,6 +46,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
                 }
             });
 
+            //For updating one by one items from list using callback
             update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -61,7 +60,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
     }
 
     private final LayoutInflater mInflater;
-    private List<Todo> mTodos; // Cached copy of todos
+    private List<Todo> mTodos;
 
     TodoListAdapter(TodoFragment context, TaskCallback callback) {
         mInflater = LayoutInflater.from(context.getContext());
@@ -77,7 +76,10 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
 
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
+
         if (mTodos != null) {
+
+
             Todo current = mTodos.get(position);
             holder.todoItemView.setText(current.getTitle());
             holder.desc.setText(current.getDetail());
@@ -85,7 +87,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
 
 
         } else {
-            // Covers the case of data not being ready yet.
+
             holder.todoItemView.setText(R.string.no_todo);
         }
     }
@@ -96,8 +98,6 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
         notifyDataSetChanged();
     }
 
-    // getItemCount() is called many times, and when it is first called,
-    // mTodos has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
         if (mTodos != null)
@@ -110,6 +110,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoVi
         return position;
     }
 
+    //interface for callback task og delete items and update items
     public interface TaskCallback {
         void onItemDeleted(int id);
 

@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTaskFragment"
-
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AddTaskFragment">
 
 
     <EditText
         android:id="@+id/title_entry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/your_title"
+        android:imeOptions="actionNext"
+        android:inputType="textCapWords"
+        android:singleLine="true"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_label" />
+        app:layout_constraintTop_toBottomOf="@+id/title_label"
+        android:drawableLeft="@drawable/ic_title"
+        />
 
     <TextView
         android:id="@+id/title_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:text="@string/title_label"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,27 +45,27 @@
         android:layout_marginTop="8dp"
         android:text="@string/desc_label"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_entry" />
-
 
     <EditText
         android:id="@+id/desc_entry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/Your_description"
         android:inputType="textMultiLine"
+        android:singleLine="true"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desc_label" />
+        app:layout_constraintTop_toBottomOf="@+id/desc_label"
+        android:drawableLeft="@drawable/ic_detail"/>
+
 
     <TextView
         android:id="@+id/priority_label"
@@ -72,8 +74,9 @@
         android:layout_marginTop="8dp"
         android:text="@string/priority_label"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc_entry" />
 
@@ -94,17 +97,18 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/materialRed"
+            android:background="@color/colorPrimary"
             android:checked="true"
             android:text="@string/high_priority"
-            android:theme="@style/WhiteRadioButton" />
+            android:theme="@style/WhiteRadioButton"
+            />
 
         <RadioButton
             android:id="@+id/radButton2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/materialOrange"
+            android:background="@color/blue"
             android:text="@string/med_priority"
             android:theme="@style/WhiteRadioButton" />
 
@@ -113,7 +117,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/materialYellow"
+            android:background="@color/light_blue"
             android:text="@string/low_priority"
             android:theme="@style/WhiteRadioButton" />
 
@@ -127,8 +131,9 @@
         android:layout_marginTop="8dp"
         android:text="@string/date_mark"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -136,21 +141,23 @@
         android:id="@+id/date_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="72dp"
         android:cursorVisible="false"
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:hint="@string/date"
+        android:imeOptions="actionDone"
         android:inputType="text"
+        android:singleLine="true"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_label"
-        tools:ignore="TextFields" />
+        tools:ignore="TextFields"
+        android:drawableLeft="@drawable/ic_date"/>
+
 
     <ImageView
         android:id="@+id/imgDate"
@@ -160,16 +167,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/date_edit"
         app:layout_constraintTop_toBottomOf="@+id/date_label"
-        app:tint="@color/teal_700" />
-
+        app:tint="@color/blue"
+        android:onClick="calendar"
+        tools:ignore="OnClick" />
     <Button
         android:id="@+id/submit_btn"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:backgroundTint="#AEB0B1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/submit"
-        app:layout_constraintTop_toBottomOf="@+id/imgDate"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_edit"
+        android:backgroundTint="@color/light_blue"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

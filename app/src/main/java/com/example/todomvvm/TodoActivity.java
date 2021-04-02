@@ -31,7 +31,7 @@ public class TodoActivity extends AppCompatActivity {
         }
     }
 
-    //update
+    //update the list update fragment using bundle
     public void moveToUpdate(Todo todo) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("todo",todo);

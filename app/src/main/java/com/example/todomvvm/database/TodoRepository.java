@@ -12,11 +12,6 @@ import com.example.todomvvm.database.TodoRoomDatabase;
 
 import java.util.List;
 
-/**
- * Abstracted Repository as promoted by the Architecture Guide.
- * https://developer.android.com/topic/libraries/architecture/guide.html
- */
-
 public class TodoRepository {
     static TodoRepository INSTANCE;
     TodoRoomDatabase mdb;

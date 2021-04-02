@@ -15,10 +15,6 @@ public class TodoViewModel extends AndroidViewModel {
 
     private TodoRepository mRepository;
 
-    // Using LiveData and caching what getTodos returns has several benefits:
-    // - We can put an observer on the data (instead of polling for changes) and only update the
-    //   the UI when the data actually changes.
-    // - Repository is completely separated from the UI through the ViewModel
     private LiveData<List<Todo>> mTodos;
 
     public TodoViewModel(@NonNull Application application) {
@@ -39,8 +35,5 @@ public class TodoViewModel extends AndroidViewModel {
     public void deleteTodo(int id) {
         mRepository.deleteTodo(id);
     }
-   /* public void updateTodo(Todo todo)
-    {
-        mRepository.update(todo);
-    }*/
+
 }

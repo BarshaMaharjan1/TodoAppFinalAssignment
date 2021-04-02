@@ -21,22 +21,9 @@ import com.example.todomvvm.ui.todo.TodoFragment;
 
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link UpdateFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class UpdateFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private EditText titleEditTExt;
     private EditText descEditText;
@@ -56,7 +43,7 @@ public class UpdateFragment extends Fragment {
 
 
     public UpdateFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -77,8 +64,10 @@ public class UpdateFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        // Inflate the layout for the fragment
         final View view;
+
         view = inflater.inflate(R.layout.fragment_update, container, false);
 
         titleEditTExt = view.findViewById(R.id.title_entry);
@@ -111,6 +100,8 @@ public class UpdateFragment extends Fragment {
 
 
             }
+
+            // Setting the priority for High,Medium and low
 
             private int getPriorityFromViews() {
                 int priority = 1;
@@ -145,6 +136,8 @@ public class UpdateFragment extends Fragment {
             }
         });
 
+
+        //For date picker as calendar
         calendar_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
