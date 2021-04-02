@@ -2,7 +2,10 @@
 
 
 Reference : https://github.com/ebbi/TodoMVVM
+          : https://github.com/binay-shah/android-todo
           : stackoverflow
+          : Android Developers
+          : Youtube
           
       successfully insert data
  <img src="InsertData.gif" width="150">
