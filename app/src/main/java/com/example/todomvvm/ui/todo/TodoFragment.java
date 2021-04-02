@@ -20,12 +20,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.todomvvm.AddTaskFragment;
 import com.example.todomvvm.R;
 import com.example.todomvvm.TodoActivity;
 import com.example.todomvvm.database.Todo;
 import com.example.todomvvm.database.TodoRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 
@@ -42,14 +44,8 @@ public class TodoFragment extends Fragment {
     }
 
     private FloatingActionButton floatingButton;
-
     private TodoListAdapter adapter;
-
-    private EditText titleEditTExt;
-    private EditText descEditText;
     private TodoRepository repository;
-    private ImageView imgDate;
-    private EditText date_edit;
 
 
     //Adding menu bar
@@ -72,11 +68,11 @@ public class TodoFragment extends Fragment {
 
                 return true;
             }
-           //sharing the  message to mail
+
             case R.id.item_share: {
 
                 Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("message");
+                i.setType("message/rfc822");
                 i.putExtra(Intent.EXTRA_EMAIL, new String[]{"barshamhrzan@gmail.com"});
                 i.putExtra(Intent.EXTRA_SUBJECT, "Todo Test");
                 i.putExtra(Intent.EXTRA_TEXT, "Welcome to todo app list.");
@@ -103,10 +99,6 @@ public class TodoFragment extends Fragment {
         View view;
         view = inflater.inflate(R.layout.main_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
-        titleEditTExt = view.findViewById(R.id.title_entry);
-        descEditText = view.findViewById(R.id.desc_label);
-        imgDate = view.findViewById(R.id.imgDate);
-        date_edit = view.findViewById(R.id.date_edit);
 
 
         this.adapter = new TodoListAdapter(this, new TodoListAdapter.TaskCallback() {
@@ -162,7 +154,7 @@ public class TodoFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, AddTaskFragment.newInstance()).addToBackStack(null)
                         .commit();
-              // Toast.makeText(requireContext(),"add",Toast.LENGTH_SHORT).show();
+                // Toast.makeText(requireContext(),"add",Toast.LENGTH_SHORT).show();
 
             }
         });
