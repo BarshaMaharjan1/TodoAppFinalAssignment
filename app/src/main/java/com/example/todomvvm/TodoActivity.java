@@ -37,7 +37,7 @@ public class TodoActivity extends AppCompatActivity {
         bundle.putSerializable("todo",todo);
         Fragment fragment= new UpdateFragment().newInstance();
         fragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).addToBackStack(null).commit();
     }
 
 

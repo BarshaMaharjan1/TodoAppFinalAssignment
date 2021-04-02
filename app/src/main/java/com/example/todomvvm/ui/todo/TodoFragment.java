@@ -160,8 +160,8 @@ public class TodoFragment extends Fragment {
             public void onClick(View view) {
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, AddTaskFragment.newInstance())
-                        .commitNow();
+                        .replace(R.id.container, AddTaskFragment.newInstance()).addToBackStack(null)
+                        .commit();
               // Toast.makeText(requireContext(),"add",Toast.LENGTH_SHORT).show();
 
             }
