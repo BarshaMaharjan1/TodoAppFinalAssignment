@@ -9,13 +9,13 @@ Reference : https://github.com/ebbi/TodoMVVM
       successfully update data
  <img src="UpdateData.gif" width="150">
    
-   successfully delete one by one data
+     successfully delete one by one data
  <img src="DeleteData.gif" width="150">
 
-successfully deletall the data from list
+    successfully deletall the data from list
  <img src="deletall.gif" width="150">
 
-  successfully share data from mail
+    successfully share data from mail
  <img src="sharedata.gif" width="150">
  
            todoapp
