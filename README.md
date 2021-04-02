@@ -3,21 +3,21 @@
 Reference : https://github.com/ebbi/TodoMVVM
           : stackoverflow
           
-      
+      successfully insert data
  <img src="InsertData.gif" width="150">
-    gif:successfully insert data
- 
+    
+      successfully update data
  <img src="UpdateData.gif" width="150">
-     gif:successfully update data
- 
+   
+   successfully delete one by one data
  <img src="DeleteData.gif" width="150">
- gif:successfully delete one by one data
- 
+
+successfully deletall the data from list
  <img src="deletall.gif" width="150">
- gif:successfully deletall the data from list
- 
+
+  successfully share data from mail
  <img src="sharedata.gif" width="150">
-   gif:successfully share data from mail
  
+           todoapp
  <img src="TodoFinalGif.gif" width="150">
- gif:todoapp
+
